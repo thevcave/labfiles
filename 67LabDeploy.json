@@ -1,0 +1,108 @@
+{
+  "FilePaths": {
+  "NestedESXiApplianceOVA": "\\\\10.0.0.9\\deploy\\Nested_ESXi6.7u3_Appliance_Template_v1.ova",
+	"VCSAInstaller": "\\\\10.0.0.9\\deploy\\VMware-VCSA-all-6.7.0-14367737",
+	"NSXOVA": "\\\\10.0.0.9\\deploy\\VMware-NSX-Manager-6.3.6-8085122.ova",
+	"ESXi65aOfflineBundle": "\\\\10.0.0.9\\deploy\\ESXi650-201908001\\metadata.zip"
+	},
+	"DeploymentType": {
+		"NestedESXi": "1",
+		"DeployVCSA": "1",
+		"SetupNewVC": "1",
+		"AddESXiHosts":"1",
+		"ConfigureVSAN":"1",
+		"ClearAlerts":"1",
+		"ConfigurevMotion":"1",
+		"SetupVXLAN":"0",
+		"ConfigureNSX":"0",
+		"MoveTovApp":"0"
+	},
+
+  "DeploymentTarget": {
+    "Type": "VCENTER",
+    "Server": "vcsa.vbenevans.com",
+    "Username": "administrator@vsphere.local",
+    "Password": "VMware1!",
+	"TargetCluster": "Cluster"
+  },
+  "NestedDeploymentConfig": {
+	"vSwitchType": "VDS",
+	"VMNetwork": "dvs-trunk",
+	"VMDatastore": "VMFS6-01",
+	"VMNetmask": "255.255.255.0",
+	"VMGateway": "10.1.101.254",
+	"VMDNS": "10.0.100.10",
+	"VMNTP": "pool.ntp.org",
+	"VMPassword": "VMware1!",
+	"VMDomain": "vbenevans.com",
+	"VMSyslog": "10.0.0.8",
+	"vAppName": "vLAB-01A",
+	"LogName": "vlab-01a.log"
+  },
+  "NestedESXi": {
+	"HostName": ["HOST01A","HOST02A","HOST03A","HOST04A"],
+  "IPAddress": ["10.1.101.11","10.1.101.12","10.1.101.13","10.1.101.14"],
+  "VLAN": "1101",
+  "vCPU": "2",
+	"vMEM": "8",
+	"CachingvDisk": "40",
+	"CapacityvDisk": "80",
+	"ESXISSH": "true",
+	"ESXIVMFS": "false"
+  },
+  "VCSA": {
+  "DeploymentSize": "tiny",
+	"Displayname": "VCSA01A",
+	"IPAddress": "10.1.101.10",
+	"VCSAGateway": "10.1.101.254",
+	"Hostname": "vcsa01a.vbenevans.com",
+	"Prefix": "24",
+  "SSHEnable": "true",
+	"Network": "1101-nest-pro-management",
+	"RootPassword": "VMware1!"
+  },
+  "PSC": {
+  "ExternalPSC": "0",
+	"Displayname": "PSC01A",
+	"IPAddress": "10.1.101.19",
+	"Hostname": "PSC01A.vbenevans.com"
+  },
+  "SSO": {
+  "DomainName": "vsphere.local",
+	"SiteName": "Site1",
+	"Password": "VMware1!"
+  },
+  "Misc": {
+  "NewvDCName": "Datacenter",
+	"NewVSANClusterName": "Cluster",
+	"UpgradeESXiTo65a": "0",
+	"AddHostByDNSName": "1"
+  },
+  "DNSCheck": {
+  "CheckDNS": "1",
+	"WindowsDNSServer": "1",
+	"DNSServer": "DC01",
+	"DNSZoneName": "vbenevans.com"
+  },
+  "NSX": {
+  	"DeployNSX": "0",
+	"vCPU": "2",
+	"vMem": "8",
+	"Displayname": "NSX63-1",
+	"Hostname": "nsx63-1.primp-industries.com",
+	"IPAddress": "172.30.0.250",
+	"NetMask": "255.255.255.0",
+	"Gateway": "172.30.0.1",
+	"SSHEnable": "true",
+	"CEIPEnable": "false",
+	"UIPassword": "VMw@re123!",
+	"CLIPassword": "VMw@re123!"
+  },
+  "VXLAN": {
+  	"PrivateVXLANVMNetwork": "dv-private-network",
+	"VDSName": "VDS-6.5",
+	"VXLANDVPortGroup": "VXLAN",
+	"VXLANSubnet": "172.16.66.",
+	"VXLANNetmask": "255.255.255.0"
+  }
+}
